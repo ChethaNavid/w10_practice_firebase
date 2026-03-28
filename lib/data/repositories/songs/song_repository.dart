@@ -6,4 +6,6 @@ abstract class SongRepository {
   Future<Song?> fetchSongById(String id);
 
   Future<void> likeSong(String id, int currentLieks);
+
+  void clearCache();
 }

@@ -28,4 +28,9 @@ class SongRepositoryMock implements SongRepository {
     // TODO: implement likeSong
     throw UnimplementedError();
   }
+  
+  @override
+  void clearCache() {
+    // TODO: implement clearCache
+  }
 }

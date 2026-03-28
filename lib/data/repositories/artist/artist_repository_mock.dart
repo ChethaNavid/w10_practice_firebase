@@ -20,4 +20,9 @@ class ArtistRepositoryMock implements ArtistRepository {
       );
     });
   }
+  
+  @override
+  void clearCache() {
+    // TODO: implement clearCache
+  }
 }

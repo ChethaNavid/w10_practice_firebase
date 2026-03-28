@@ -12,8 +12,14 @@ class SongRepositoryFirebase extends SongRepository {
     '/songs.json',
   );
 
+  List<Song>? _cachedSongs;
+
   @override
   Future<List<Song>> fetchSongs() async {
+    if(_cachedSongs != null) {
+      return _cachedSongs!;
+    }
+
     final http.Response response = await http.get(songsUri);
 
     if (response.statusCode == 200) {
@@ -24,11 +30,17 @@ class SongRepositoryFirebase extends SongRepository {
       for (final entry in songJson.entries) {
         result.add(SongDto.fromJson(entry.key, entry.value));
       }
+      _cachedSongs = result;
       return result;
     } else {
       // 2- Throw expcetion if any issue
       throw Exception('Failed to load posts');
     }
+  }
+
+  @override
+  void clearCache() {
+    _cachedSongs = null;
   }
 
   @override
