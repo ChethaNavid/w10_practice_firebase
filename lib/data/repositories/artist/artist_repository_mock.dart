@@ -1,3 +1,7 @@
+import 'package:w10_practice_firebase/model/comment/comment.dart';
+
+import 'package:w10_practice_firebase/model/songs/song.dart';
+
 import '../../../model/artist/artist.dart';
 import 'artist_repository.dart';
 
@@ -24,5 +28,23 @@ class ArtistRepositoryMock implements ArtistRepository {
   @override
   void clearCache() {
     // TODO: implement clearCache
+  }
+
+  @override
+  Future<void> addComment(String artistId, String content) {
+    // TODO: implement addComment
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Comment>> fetchCommentByArtist(String artistId) {
+    // TODO: implement fetchCommentByArtist
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Song>> fetchSongByArtist(String artistId) {
+    // TODO: implement fetchSongByArtist
+    throw UnimplementedError();
   }
 }
