@@ -8,7 +8,7 @@ import 'song_repository.dart';
 
 class SongRepositoryFirebase extends SongRepository {
   final Uri songsUri = Uri.https(
-    'test-a2a77-default-rtdb.asia-southeast1.firebasedatabase.app',
+    'w9-database-f4f07-default-rtdb.asia-southeast1.firebasedatabase.app',
     '/songs.json',
   );
 
@@ -33,4 +33,21 @@ class SongRepositoryFirebase extends SongRepository {
 
   @override
   Future<Song?> fetchSongById(String id) async {}
+
+  @override
+  Future<void> likeSong(String id, int currentLieks) async {
+    final Uri url = Uri.https(
+      'w9-database-f4f07-default-rtdb.asia-southeast1.firebasedatabase.app',
+      '/songs/$id.json'
+    );
+
+    final http.Response response = await http.patch(
+      url,
+      body: json.encode({'likes': currentLieks + 1})
+    );
+
+    if (response.statusCode >= 400) {
+      throw Exception('Failed to load posts');
+    }
+  }
 }
